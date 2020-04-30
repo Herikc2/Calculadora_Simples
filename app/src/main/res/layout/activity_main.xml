@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/tv_resultado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_span="2"
+            android:textAlignment="center"
+            android:textSize="25dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/LL_num"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_num1"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/numero_1"
+                android:inputType="numberDecimal"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/et_num2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/numero_2"
+                android:inputType="numberDecimal"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/LL_Op"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_subtracao"
+                android:layout_width="97dp"
+                android:layout_height="65dp"
+                android:layout_column="1"
+                android:onClick="subtracaoResultado"
+                android:text="@string/subtracao" />
+
+            <Button
+                android:id="@+id/btn_adicao"
+                android:layout_width="97dp"
+                android:layout_height="65dp"
+                android:layout_column="0"
+                android:onClick="adicaoResultado"
+                android:text="@string/adicao" />
+
+            <Button
+                android:id="@+id/btn_multiplicacao"
+                android:layout_width="97dp"
+                android:layout_height="65dp"
+                android:layout_column="3"
+                android:onClick="multiplicacaoResultado"
+                android:text="@string/multiplicacao" />
+
+            <Button
+                android:id="@+id/btn_divisao"
+                android:layout_width="97dp"
+                android:layout_height="65dp"
+                android:layout_column="2"
+                android:onClick="divisaoResultado"
+                android:text="@string/divisao" />
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/lv_historico"
+                android:layout_width="match_parent"
+                android:layout_height="305dp"
+                android:layout_marginTop="25dp"></ListView>
+
+            <Button
+                android:id="@+id/btn_apagar_historico"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="limparHistorico"
+                android:text="@string/limpar_historico" />
+        </LinearLayout>
+
+    </TableRow>
+
+</TableLayout>

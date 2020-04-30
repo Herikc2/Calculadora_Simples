@@ -1,0 +1,126 @@
+package com.example.calculadora;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText numero1;
+    EditText numero2;
+    TextView resultado;
+    ListView lv_historico;
+
+    ArrayList<String> historico = new ArrayList<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        numero1 = findViewById(R.id.et_num1);
+        numero2  = findViewById(R.id.et_num2);
+        resultado = findViewById(R.id.tv_resultado);
+        lv_historico = findViewById(R.id.lv_historico);
+    }
+
+    public void adicaoResultado(View v){
+        resultado.setText("");
+        String  num1St = numero1.getText().toString().trim();
+        String  num2St = numero2.getText().toString().trim();
+
+        if (num1St.equals("") || num2St.equals("")){
+            Toast.makeText(this, "Preencher os campos", Toast.LENGTH_SHORT).show();
+        } else{
+            float res = Float.valueOf(num1St) + Float.valueOf(num2St);
+            resultado.setText("Resultado: " + res);
+
+            adicionarLista(num1St + " + " + num2St +  " =  " + res);
+            limparCamposNumericos();
+            Toast.makeText(this, "Operação Realizada Com Sucesso", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void subtracaoResultado(View v){
+        resultado.setText("");
+        String  num1St = numero1.getText().toString().trim();
+        String  num2St = numero2.getText().toString().trim();
+
+        if (num1St.equals("") || num2St.equals("")){
+            Toast.makeText(this, "Preencher os campos", Toast.LENGTH_SHORT).show();
+        } else{
+            float res = Float.valueOf(num1St) - Float.valueOf(num2St);
+            resultado.setText("Resultado: " + res);
+
+            adicionarLista(num1St + " - " + num2St +  " =  " + res);
+            limparCamposNumericos();
+            Toast.makeText(this, "Operação Realizada Com Sucesso", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void multiplicacaoResultado(View v){
+        resultado.setText("");
+        String  num1St = numero1.getText().toString().trim();
+        String  num2St = numero2.getText().toString().trim();
+
+        if (num1St.equals("") || num2St.equals("")){
+            Toast.makeText(this, "Preencher os campos", Toast.LENGTH_SHORT).show();
+        } else{
+            float res = Float.valueOf(num1St) * Float.valueOf(num2St);
+            resultado.setText("Resultado: " + res);
+
+            adicionarLista(num1St + " * " + num2St +  " =  " + res);
+            limparCamposNumericos();
+            Toast.makeText(this, "Operação Realizada Com Sucesso", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void divisaoResultado(View v){
+        resultado.setText("");
+        String  num1St = numero1.getText().toString().trim();
+        String  num2St = numero2.getText().toString().trim();
+
+        if (num1St.equals("") || num2St.equals("")){
+            Toast.makeText(this, "Preencher os campos", Toast.LENGTH_SHORT).show();
+        } else{
+            if(num2St.equals("0")){
+                resultado.setText("Resultado: Erro");
+            }else{
+                float res = Float.valueOf(num1St) / Float.valueOf(num2St);
+
+                adicionarLista(num1St + " / " + num2St +  " =  " + res);
+                limparCamposNumericos();
+                resultado.setText("Resultado: " + res);
+            }
+            Toast.makeText(this, "Operação Realizada Com Sucesso", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void adicionarLista(String op){
+        historico.add(op);
+        ArrayAdapter<String> histArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, historico);
+        lv_historico.setAdapter(histArrayAdapter);
+    }
+
+    public void limparHistorico(View v){
+        historico.clear();
+        ArrayAdapter<String> histArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, historico);
+        lv_historico.setAdapter(histArrayAdapter);
+
+        Toast.makeText(this, "Histórico Apagado", Toast.LENGTH_SHORT).show();
+    }
+
+    private void limparCamposNumericos(){
+        numero1.setText("");
+        numero2.setText("");
+    }
+
+}
